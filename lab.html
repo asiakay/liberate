@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab • Liberatory Futures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000;
+            --secondary: #FF9D4E;
+            --bg: #f0f0f0;
+            --card-bg: rgba(255,255,255,0.8);
+        }
+        
+        body {
+            background: var(--bg);
+            margin: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header/Nav */
+        .sticky-bar {
+            position: sticky;
+            top: 0;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            border-bottom: 1px solid #ddd;
+            font-family: 'Major Mono Display', monospace;
+        }
+        
+        .sticky-bar a {
+            color: var(--primary);
+            margin-right: 1.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+        }
+        
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .full-bleed {
+            padding: 6rem 2rem;
+            background: var(--primary);
+            color: white;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Major Mono Display', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        /* Intro Section */
+        .intro-statement {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+        
+        .intro-statement:before {
+            content: "🌀";
+            position: absolute;
+            left: -60px;
+            top: -20px;
+            font-size: 2rem;
+            opacity: 0.5;
+        }
+        
+        /* Cards Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 4px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: var(--secondary);
+            margin-top: 0;
+        }
+        
+        /* Values List */
+        .values-list {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+        
+        .values-list li {
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .values-list strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        /* CTA Section */
+        .cta-block {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .cta-buttons a {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-family: 'Major Mono Display', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+        }
+        
+        .cta-buttons a:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating-glyph {
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="sticky-bar">
+        <nav>
+            <a href="/">☼ HOME</a>
+            <a href="/lab" class="active">LAB</a>
+            <a href="/projects">PROJECTS</a>
+            <a href="/toolkits">TOOLKITS</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1. Intro Statement -->
+        <section class="full-bleed">
+            <div class="intro-statement">
+                <span class="floating-glyph">🌀</span> 
+                <p><em>"The Liberatory Futures Lab is not a brand. It's a practice. A forge for what must exist.<br>
+                We prototype tools, stories, and systems that serve liberation—not domination."</em></p>
+            </div>
+        </section>
+
+        <!-- 2. Our Why -->
+        <section>
+            <h2>Why This Lab Exists</h2>
+            <div class="columns">
+                <p>Systems are collapsing—but the replacements don't yet exist.</p>
+                <p>Complex tools often exclude the very people who need them most.</p>
+                <p><strong>Clarity is a form of care.</strong></p>
+                <p>Liberation must be built, tested, shared.</p>
+            </div>
+            
+            <!-- Visual Option: Add your "anatomy of a broken system" graphic here -->
+        </section>
+
+        <!-- 3. What We Build -->
+        <section class="full-bleed" style="background: #111;">
+            <h2 style="color: var(--secondary);">We Prototype Liberation</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Toolkits</h3>
+                    <p>Practical guides for collective transformation</p>
+                </div>
+                <div class="card">
+                    <h3>Glyph Libraries</h3>
+                    <p>Visual language for new narratives</p>
+                </div>
+                <div class="card">
+                    <h3>Civic Resources</h3>
+                    <p>Tools for participatory governance</p>
+                </div>
+                <div class="card">
+                    <h3>Zines</h3>
+                    <p>Distilled knowledge in accessible formats</p>
+                </div>
+                <div class="card">
+                    <h3>Workshop Materials</h3>
+                    <p>Fully-designed facilitation resources</p>
+                </div>
+                <div class="card">
+                    <h3>Digital Rituals</h3>
+                    <p>Ceremonies for the virtual commons</p>
+                </div>
+            </div>
+            
+            <!-- Featured Project -->
+            <div style="max-width: 800px; margin: 4rem auto; padding: 2rem; background: rgba(255,255,255,0.1);">
+                <blockquote style="font-style: italic; font-size: 1.2rem;">
+                    "The Bridge Toolkit fundamentally changed how our community approaches conflict transformation."
+                </blockquote>
+                <p style="text-align: right;">— Marisol, Mutual Aid Network</p>
+            </div>
+        </section>
+
+        <!-- 4. How We Work -->
+        <section>
+            <h2>Our Approach Is Intentional</h2>
+            
+            <ul class="values-list">
+                <li>
+                    <strong>Clarity First</strong>
+                    We design with usability, beauty, and care.
+                </li>
+                <li>
+                    <strong>Build With, Not For</strong>
+                    Every tool is developed with community context.
+                </li>
+                <li>
+                    <strong>Rest is Part of the Process</strong>
+                    We believe in sustainable creation.
+                </li>
+                <li>
+                    <strong>Liberatory Review Loop</strong>
+                    All projects undergo ethical reflection and feedback.
+                </li>
+            </ul>
+            
+            <!-- Workflow diagram would go here -->
+        </section>
+
+        <!-- 5. Who's In the Lab -->
+        <section style="background: #f9f9f9;">
+            <h2>Who We Are</h2>
+            
+            <p>We are a constellation of designers, witches, organizers, and technologists working across stolen lands.</p>
+            
+            <p>With gratitude to our ancestors, the Disability Justice movement, Black feminist thinkers, 
+            and all those who've shared their knowledge to make this work possible.</p>
+            
+            <!-- Avatar grid would go here -->
+        </section>
+
+        <!-- 6. CTA Section -->
+        <section class="cta-block">
+            <h2 style="color: var(--primary);">Want to Collaborate?</h2>
+            <p style="font-size: 1.5rem; max-width: 600px; margin: 0 auto;">
+                Sponsor a Tool. Fund a Spell. Join a Build Sprint.
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="/join">Let's Collaborate</a>
+                <a href="/signal">Get Updates</a>
+                <a href="/support">Support the Lab</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 7. Footer -->
+    <footer>
+        <p>
+            <a href="/manifesto.pdf" style="color: var(--primary);">📎 Read Our Full Manifesto</a> | 
+            <a href="/projects" style="color: var(--primary);">🌀 See Our Projects</a>
+        </p>
+        <p style="opacity: 0.7; margin-top: 1rem;">Built with care using HTML, CSS, and collective magic</p>
+    </footer>
+</body>
+</html>
