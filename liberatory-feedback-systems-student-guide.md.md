@@ -1,7 +1,3 @@
-Here's the exact content to copy/paste into a Google Doc, formatted for immediate use with headers, bullet points, and hyperlinks:
-
----
-
 # **Liberatory Feedback Systems: A Student Builder's Guide**  
 *How to Audit, Rebuild & Demand Better Campus Tech*  
 
@@ -97,9 +93,3 @@ Try designing:
 
 ---
 
-**Preview this doc live**: [Click here to create your own copy](https://docs.new) *(Auto-generates a fresh Google Doc)*  
-
-Let me know if you'd like:  
-1. A version with **comments for facilitators**  
-2. A **print-friendly PDF** version  
-3. To add a specific **campus case study**
