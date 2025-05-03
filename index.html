@@ -9,6 +9,7 @@
         body {
             background: #f0f0f0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -17,23 +18,48 @@
             font-family: 'Major Mono Display', monospace;
         }
 
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
         .container {
             background: white;
             border: 2px solid #333;
-            padding: 3rem;
+            padding: 1.5rem 2rem;
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
             position: relative;
-            max-width: 80%;
+            max-width: 90%; /* Increased from 80% */
+            min-width: 350px; /* Increased from 300px */
+            text-align: center;
+            overflow: visible; /* Changed from 'hidden' to make sure text isn't cut off */
+            word-break: keep-all;
+        }
+
+        .hacked-text-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto;
+            overflow: visible; /* Ensure wrapper doesn't clip content */
         }
 
         .hacked-text {
             position: relative;
-            font-size: 4vw;
+            font-size: 3.5vw;
             color: #000;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-weight: bold;
             white-space: nowrap;
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+            display: inline-block;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow: visible; /* Ensure text isn't clipped */
         }
 
         /* GLITCH EFFECT */
@@ -117,27 +143,196 @@
             animation: blink 1s infinite;
             vertical-align: middle;
             margin-left: 0.1em;
+            color: transparent !important;
+            text-indent: -9999px;
+            overflow: hidden;
+            font-size: 0;
+            line-height: 0;
+            position: relative; /* Added to ensure cursor is positioned correctly */
         }
 
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
+
+        /* ENTER BUTTON */
+        #navTrigger {
+            background: none;
+            border: none;
+            color: #333;
+            font-family: 'Major Mono Display', monospace;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        #navTrigger:hover {
+            color: #FF9D4E;
+            text-shadow: 0 0 10px rgba(255, 157, 78, 0.5);
+        }
+
+        #navTrigger::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #333;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        #navTrigger::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #333;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        #navTrigger:hover::before,
+        #navTrigger:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Modal Base */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 5, 15, 0.95);
+            z-index: 1000;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .modal-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Navigation Links */
+        .modal ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .modal li {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .modal a {
+            color: #fff;
+            font-family: 'Major Mono Display', monospace;
+            font-size: 2.5rem;
+            letter-spacing: -0.05em;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .modal a:hover {
+            color: #FF9D4E;
+        }
+
+        /* Description Reveal */
+        .modal a::after {
+            content: attr(data-desc);
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .modal a:hover::after {
+            opacity: 0.7;
+        }
+
+        /* Close Button */
+        #closeNav {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            font-family: 'Major Mono Display', monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-top: 3rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        #closeNav:hover {
+            color: #FF9D4E;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .hacked-text {
+                font-size: 5vw; /* Reduced from 6vw to ensure it fits better */
+            }
+            .container {
+                padding: 1rem 1.5rem;
+                min-width: 280px; /* Adjusted for mobile */
+                max-width: 95%; /* Increased for better mobile view */
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hacked-text" data-text="LIBERATORY FUTURES LAB">LIBERATORY FUTURES LAB<span class="cursor"></span></div>
-        <div class="noise"></div>
-      <!--  <div class="error-line"></div> -->
+    <div class="main-content">
+        <div class="container">
+            <div class="hacked-text-wrapper">
+                <div class="hacked-text" data-text="LIBERATORY FUTURES LAB">LIBERATORY FUTURES LAB<span class="cursor"></span></div>
+            </div>
+            <div class="noise"></div>
+        </div>
+        
+        <button id="navTrigger">ENTER</button>
     </div>
-
+    <!-- Modal Overlay -->
+    <div id="navModal" class="modal">
+        <div class="modal-content">
+            <nav>
+                <ul>
+                    <li><a href="https://asiakay.github.io/liberate/lab.html" data-desc="Where futures get prototyped">LAB</a></li>
+                    <li><a href="/projects" data-desc="Experiments in liberation design">PROJECTS</a></li>
+                    <li><a href="/toolkits" data-desc="Clarity you can hold">TOOLKITS</a></li>
+                    <li><a href="/join" data-desc="Sponsor. Contribute. Collaborate.">JOIN</a></li>
+                    <li><a href="/signal" data-desc="Encrypt your intent">SIGNAL</a></li>
+                </ul>
+                <button id="closeNav">✕ RETURN TO SURFACE</button>
+            </nav>
+        </div>
+    </div>
     <script>
         // CHARACTER CORRUPTION
         const textElement = document.querySelector('.hacked-text');
         const originalText = "LIBERATORY FUTURES LAB";
         const chars = "!@#$%&*?¿¡";
-
+        
         function corruptText() {
             let newText = "";
             for (let i = 0; i < originalText.length; i++) {
@@ -147,12 +342,12 @@
                     newText += originalText[i];
                 }
             }
+            textElement.innerHTML = newText + '<span class="cursor"></span>';
             textElement.setAttribute('data-text', newText);
-            textElement.firstChild.textContent = newText;
         }
-
+        
         setInterval(corruptText, 150);
-
+        
         // ERROR LINES
         function createErrorLine() {
             const line = document.createElement('div');
@@ -162,8 +357,26 @@
             document.querySelector('.container').appendChild(line);
             setTimeout(() => line.remove(), 5000);
         }
-
+        
         setInterval(createErrorLine, 800);
+        
+        // Modal Navigation
+        document.getElementById('navTrigger').addEventListener('click', function() {
+            document.getElementById('navModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        document.getElementById('closeNav').addEventListener('click', function() {
+            document.getElementById('navModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        window.addEventListener('click', function(event) {
+            if (event.target == document.getElementById('navModal')) {
+                document.getElementById('navModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
     </script>
 </body>
 </html>
