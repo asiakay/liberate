@@ -1,11 +1,15 @@
-# LIBERATE 
+# LIBERATED
 *A toolkit for radical imagination & justice-driven futures.*  
+
+The Liberatory Futures Lab is a collective creating tools, narratives, and systems for liberation, blending art, activism, and community-driven design to challenge oppression and build just futures.
+
+(Short version: A collaborative lab prototyping liberation through creative tools, resources, and radical imagination.)
 
 ![Liberate Banner Image](/Screen Recording 2025-04-20 at 3.53.26 PM.gif) 
 ---
 
 ## 🔥 WHY THIS EXISTS  
-We fuse **art, science, history, and activism** to prototype liberatory futures--grounded in community,resistance, and iterative experimentation. Born from the proposed [Liberatory Futures Lab](https://roxbury.edu), this project honors Roxbury’s legacy of abolitionist innovation.  
+We fuse **art, science, history, and activism** to prototype liberatory futures--grounded in community,resistance, and iterative experimentation. Born from a collaborative spark ignited at [Roxbury Community College](https://rcc.mass.edu), in collaboration with STEM, Arts, and Business innovation this project honors Roxbury’s legacy of abolitionist human-centered design and interdisciplinary innovation.  
 
 > *"Things are not getting worse, they are getting uncovered. We must hold each other tight and continue to pull back the veil."*  
 > -- Adrienne Maree Brown  
