@@ -47,7 +47,7 @@ This work is shared under [GPL 3.0](LICENSE) -- because liberation isn’t propr
 
 ## 💌 CONNECT  
 - **Lab Website**: [Liberatory Futures Lab](#)  
-- **Email**: liberate@roxbury.edu  
+- **Email**: algrady@roxbury.edu  
 - **Social**: `#LiberateGitHub`  
 
 *Join us. Break silos. Build futures.*

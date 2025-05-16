@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liberatory Technology Manifesto</title>
+    <style>
+        :root {
+            --bg: #111;
+            --text: #f0f0f0;
+            --accent: #7ae582;
+            --secondary: #c1cad6;
+            --card-bg: #1e1e1e;
+            --transition: all 0.3s ease;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f9f9f9;
+                --text: #222;
+                --accent: #2a8c4a;
+                --secondary: #4a5568;
+                --card-bg: #fff;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--accent), #5bc0be);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .manifesto-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .manifesto-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .item-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .item-header:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .item-number {
+            font-weight: 700;
+            color: var(--accent);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            min-width: 30px;
+        }
+
+        .item-title {
+            font-weight: 600;
+            font-size: 1.3rem;
+            flex-grow: 1;
+        }
+
+        .item-toggle {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .item-toggle::before, 
+        .item-toggle::after {
+            content: '';
+            position: absolute;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .item-toggle::before {
+            width: 14px;
+            height: 2px;
+            left: 5px;
+            top: 11px;
+        }
+
+        .item-toggle::after {
+            width: 2px;
+            height: 14px;
+            left: 11px;
+            top: 5px;
+        }
+
+        .item-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+        }
+
+        .item-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .manifesto-item.active .item-content {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .manifesto-item.active .item-toggle::after {
+            transform: rotate(90deg);
+            opacity: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .item-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Liberatory Technology Manifesto</h1>
+        <div class="subtitle">Where memory meets invention. Where the margins design tomorrow.</div>
+    </header>
+
+    <main>
+        <div class="manifesto-item">
+            <div class="item-header">
+                <div class="item-number">1</div>
+                <div class="item-title">We Are the Architects of Elsewhere</div>
+                <div class="item-toggle"></div>
+            </div>
+            <div class="item-content">
+                <p>Liberation isn't behind us—it's ahead.<br>
+                We build tools that imagine beyond the system's imagination.</p>
+            </div>
+        </div>
+
+        <div class="manifesto-item">
+            <div class="item-header">
+                <div class="item-number">2</div>
+                <div class="item-title">Liberation Is the Blueprint</div>
+                <div class="item-toggle"></div>
+            </div>
+            <div class="item-content">
+                <p>Our tools are not neutral—they are rituals of survival, maps of escape, and portals to freedom.<br>
+                Liberation is not a plug-in. It's the source code.</p>
+            </div>
+        </div>
+
+        <div class="manifesto-item">
+            <div class="item-header">
+                <div class="item-number">3</div>
+                <div class="item-title">We Prototype the Possible</div>
+                <div class="item-toggle"></div>
+            </div>
+            <div class="item-content">
+                <p>Every experiment, every glitch, every local mesh, every whispered alternative—<br>
+                is a prototype for a world that wants to live.</p>
+            </div>
+        </div>
+
+        <div class="manifesto-item">
+            <div class="item-header">
+                <div class="item-number">4</div>
+                <div class="item-title">Memory Powers Our Machines</div>
+                <div class="item-toggle"></div>
+            </div>
+            <div class="item-content">
+                <p>We encode ancestral knowledge into new containers.<br>
+                Drum into code. Story into sensor. Resistance into circuitry.</p>
+            </div>
+        </div>
+
+        <div class="manifesto-item">
+            <div class="item-header">
+                <div class="item-number">5</div>
+                <div class="item-title">Design Is Destiny</div>
+                <div class="item-toggle"></div>
+            </div>
+            <div class="item-content">
+                <p>We refuse predictive policing, algorithmic bias, extractive platforms.<br>
+                Instead, we design consent-based, curiosity-driven, human-scaled tech.</p>
+            </div>
+        </div>
+
+        <div class="manifesto-item">
+            <div class="item-header">
+                <div class="item-number">6</div>
+                <div class="item-title">We Dream Together in Public</div>
+                <div class="item-toggle"></div>
+            </div>
+            <div class="item-content">
+                <p>We co-create the tools that hold us.<br>
+                No founders. No bosses. Only collaborators, artists, healers, and hackers.</p>
+            </div>
+        </div>
+
+        <div class="manifesto-item">
+            <div class="item-header">
+                <div class="item-number">7</div>
+                <div class="item-title">Refusal Is a Portal</div>
+                <div class="item-toggle"></div>
+            </div>
+            <div class="item-content">
+                <p>Every no opens a door.<br>
+                We exit systems that refuse us—and build technologies that reflect us.</p>
+            </div>
+        </div>
+
+        <div class="manifesto-item">
+            <div class="item-header">
+                <div class="item-number">8</div>
+                <div class="item-title">Joy Is a Framework</div>
+                <div class="item-toggle"></div>
+            </div>
+            <div class="item-content">
+                <p>Our systems should feel like breathing.<br>
+                Ease is not a luxury—it's infrastructure.</p>
+            </div>
+        </div>
+
+        <div class="manifesto-item">
+            <div class="item-header">
+                <div class="item-number">9</div>
+                <div class="item-title">The Lab Is the Movement</div>
+                <div class="item-toggle"></div>
+            </div>
+            <div class="item-content">
+                <p>This lab is not a brand.<br>
+                It's a living, learning, liberating process—a constellation of future fragments, coming into focus.</p>
+            </div>
+        </div>
+
+        <div class="manifesto-item">
+            <div class="item-header">
+                <div class="item-number">10</div>
+                <div class="item-title">We Are Already Designing Tomorrow</div>
+                <div class="item-toggle"></div>
+            </div>
+            <div class="item-content">
+                <p>The future isn't coming.<br>
+                It's being built—right now—in our kitchens, our DMs, our collective dreaming.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="emoji">🌱</div>
+        <div>Liberatory Futures Begin With Us</div>
+        <div style="margin-top: 1rem; font-style: italic;">May our technology carry rhythm, memory, resistance—and the audacity to imagine more.</div>
+    </footer>
+
+    <script>
+        // Animate manifesto items on scroll
+        const manifestoItems = document.querySelectorAll('.manifesto-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        manifestoItems.forEach((item, index) => {
+            // Stagger animations
+            item.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(item);
+            
+            // Accordion functionality
+            const header = item.querySelector('.item-header');
+            header.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Auto-open first item
+        if (manifestoItems.length > 0) {
+            manifestoItems[0].classList.add('active');
+        }
+    </script>
+</body>
+</html>
