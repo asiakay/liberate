@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liberatory Narratives Archive | Liberatory Futures Lab</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Space+Grotesk:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --black: #000000;
+        --orange: #ff9d4e;
+        --cream: #fff8f0;
+        --red: #e54b4b;
+        --purple: #6e44ff;
+        --teal: #2ec4b6;
+        --text-primary: rgba(0, 0, 0, 0.9);
+        --text-secondary: rgba(0, 0, 0, 0.6);
+        --text-inverse: rgba(255, 255, 255, 0.9);
+        --link: var(--orange);
+        --link-hover: #ff7b1c;
+        --focus-ring: rgba(255, 157, 78, 0.4);
+      }
+
+      body {
+        font-family: "Space Grotesk", sans-serif;
+        line-height: 1.6;
+        color: var(--text-primary);
+        background: var(--cream);
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Header */
+      .navbar {
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(5px);
+        z-index: 100;
+        border-bottom: 1px solid #ddd;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .nav-link {
+        font-family: "Major Mono Display", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.9rem;
+        color: var(--black);
+        text-decoration: none;
+      }
+
+      .nav-link:hover {
+        color: var(--orange);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: var(--black);
+        color: var(--text-inverse);
+        padding: 6rem 2rem;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-family: "Major Mono Display", monospace;
+        font-size: 3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Main Content */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+      }
+
+      /* Filter Controls */
+      .filters {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        background: transparent;
+        border: 1px solid var(--black);
+        padding: 0.5rem 1rem;
+        font-family: "Space Grotesk";
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--black);
+        color: white;
+      }
+
+      /* Book Grid */
+      .book-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .book-card {
+        background: white;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+      }
+
+      .book-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .book-cover {
+        height: 200px;
+        background: var(--black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+      }
+
+      .book-details {
+        padding: 1.5rem;
+      }
+
+      .book-title {
+        font-family: "Major Mono Display", monospace;
+        font-size: 1.2rem;
+        margin: 0 0 0.5rem 0;
+        color: var(--black);
+      }
+
+      .book-author {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+      }
+
+      .book-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .tag {
+        background: var(--cream);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        font-family: "Major Mono Display", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.9rem;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s;
+        margin-top: 1rem;
+      }
+
+      .btn-primary {
+        background: var(--orange);
+        color: var(--black);
+      }
+
+      .btn-primary:hover {
+        background: var(--black);
+        color: var(--orange);
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 3rem 2rem;
+        border-top: 1px solid #ddd;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .book-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .filters {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="/" class="nav-link">☼ LIBERATE</a>
+      <nav class="nav-links">
+        <a href="/lab" class="nav-link">LAB</a>
+        <a href="/narratives" class="nav-link active">NARRATIVES</a>
+        <a href="/toolkits" class="nav-link">TOOLKITS</a>
+        <a href="/about" class="nav-link">ABOUT</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>LIBERATORY NARRATIVES ARCHIVE</h1>
+      <p>
+        First-person accounts of resistance, survival, and imagination—curated
+        as fuel for today's movements
+      </p>
+    </section>
+
+    <main class="container">
+      <div class="filters">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Abolition</button>
+        <button class="filter-btn">Indigenous</button>
+        <button class="filter-btn">Feminist</button>
+        <button class="filter-btn">Queer</button>
+        <button class="filter-btn">Disability Justice</button>
+        <button class="filter-btn">Economic Liberation</button>
+      </div>
+
+      <div class="book-grid">
+        <!-- Book 1 -->
+        <div class="book-card">
+          <div class="book-cover" style="background-color: #2c3e50">📖</div>
+          <div class="book-details">
+            <h3 class="book-title">
+              THE INTERESTING NARRATIVE OF OLAUDAH EQUIANO
+            </h3>
+            <p class="book-author">Olaudah Equiano (1789)</p>
+            <div class="book-tags">
+              <span class="tag">Abolition</span>
+              <span class="tag">Autobiography</span>
+              <span class="tag">18th Century</span>
+            </div>
+            <a
+              href="https://www.gutenberg.org/files/15399/15399-h/15399-h.htm"
+              class="btn btn-primary"
+              >Read Online</a
+            >
+          </div>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="book-card">
+          <div class="book-cover" style="background-color: #34495e">✊</div>
+          <div class="book-details">
+            <h3 class="book-title">ASSAATA: AN AUTOBIOGRAPHY</h3>
+            <p class="book-author">Assata Shakur (1987)</p>
+            <div class="book-tags">
+              <span class="tag">Black Liberation</span>
+              <span class="tag">Political Prisoner</span>
+              <span class="tag">20th Century</span>
+            </div>
+            <a
+              href="https://files.libcom.org/files/assataauto.pdf"
+              class="btn btn-primary"
+              >Find a Copy</a
+            >
+          </div>
+        </div>
+
+        <!-- Book 3 -->
+        <div class="book-card">
+          <div class="book-cover" style="background-color: #7f8c8d">🌍</div>
+          <div class="book-details">
+            <h3 class="book-title">I, RIGOBERTA MENCHÚ</h3>
+            <p class="book-author">Rigoberta Menchú (1983)</p>
+            <div class="book-tags">
+              <span class="tag">Indigenous</span>
+              <span class="tag">Testimonio</span>
+              <span class="tag">Guatemala</span>
+            </div>
+            <a
+              href="https://archive.org/details/irigobertamenchu0000menc/mode/2up"
+              class="btn btn-primary"
+              >Explore</a
+            >
+          </div>
+        </div>
+
+        <!-- Book 4 -->
+        <div class="book-card">
+          <div class="book-cover" style="background-color: #8e44ad">✍️</div>
+          <div class="book-details">
+            <h3 class="book-title">
+              NARRATIVE OF THE LIFE OF FREDERICK DOUGLASS
+            </h3>
+            <p class="book-author">Frederick Douglass (1845)</p>
+            <div class="book-tags">
+              <span class="tag">Abolition</span>
+              <span class="tag">Literacy as Resistance</span>
+              <span class="tag">19th Century</span>
+            </div>
+            <a
+              href="https://gutenberg.org/files/23/23-h/23-h.htm"
+              class="btn btn-primary"
+              >Read Online</a
+            >
+          </div>
+        </div>
+
+        <!-- Book 5 -->
+        <div class="book-card">
+          <div class="book-cover" style="background-color: #16a085">🗣️</div>
+          <div class="book-details">
+            <h3 class="book-title">SISTER OUTSIDER</h3>
+            <p class="book-author">Audre Lorde (1984)</p>
+            <div class="book-tags">
+              <span class="tag">Black Feminist</span>
+              <span class="tag">Essays</span>
+              <span class="tag">Queer</span>
+            </div>
+            <a
+              href="https://archive.org/details/lorde-audre-sister-outsider/mode/2up"
+              class="btn btn-primary"
+              >Find a Copy</a
+            >
+          </div>
+        </div>
+
+        <!-- Book 6 -->
+        <div class="book-card">
+          <div class="book-cover" style="background-color: #c0392b">🔮</div>
+          <div class="book-details">
+            <h3 class="book-title">
+              Shifting the Weight of Inaccessibility Access<br>Intimacy as a Critical Phenomenological Ethos"
+            </h3>
+            <p class="book-author">Mia Mingus (2020)</p>
+            <div class="book-tags">
+              <span class="tag">Disability Justice</span>
+              <span class="tag">Transformative Justice</span>
+              <span class="tag">Queer</span>
+            </div>
+            <a
+              href="https://www.researchgate.net/publication/346622969_Shifting_the_Weight_of_Inaccessibility_Access_Intimacy_as_a_Critical_Phenomenological_Ethos"
+              class="btn btn-primary"
+              >Read Online</a
+            >
+          </div>
+        </div>
+
+        <!-- Book 7 -->
+        <div class="book-card">
+          <div class="book-cover" style="background-color: #2c3e50">💸</div>
+          <div class="book-details">
+            <h3 class="book-title">THE DEBT COLLECTIVE</h3>
+            <p class="book-author">The Debt Collective (2022)</p>
+            <div class="book-tags">
+              <span class="tag">Economic Liberation</span>
+              <span class="tag">Organizing</span>
+              <span class="tag">21st Century</span>
+            </div>
+            <a href="#" class="btn btn-primary">Explore</a>
+          </div>
+        </div>
+
+        <!-- Book 8 -->
+        <div class="book-card">
+          <div class="book-cover" style="background-color: #34495e">🌱</div>
+          <div class="book-details">
+            <h3 class="book-title">BRAIDING SWEETGRASS</h3>
+            <p class="book-author">Robin Wall Kimmerer (2013)</p>
+            <div class="book-tags">
+              <span class="tag">Indigenous</span>
+              <span class="tag">Ecological</span>
+              <span class="tag">Wisdom</span>
+            </div>
+            <a href="#" class="btn btn-primary">Find a Copy</a>
+          </div>
+        </div>
+        
+        
+        
+<!-- Book 9 - History of Sexuality -->
+<div class="book-card">
+    <div class="book-cover" style="background-color: #6E44FF;">🧬</div>
+    <div class="book-details">
+        <h3 class="book-title">HISTORY OF SEXUALITY, VOL. 1</h3>
+        <p class="book-author">Interpretations and theories by Jody Valentine; Clementine Sparks Farnum; Corinne S; Ellen J; Jane L; Jonah; Kae T; Kevin Carlson; Lauren; Madison Hesse; Mikayla Stout; Sara Cawley; Sophie Varma; Tristen Leone; and Ximena Alba Barcenas, centered around the work of Michel Foucault (1976). </p>
+        <div class="book-tags">
+            <span class="tag">Queer Theory</span>
+            <span class="tag">Power Systems</span>
+            <span class="tag">Philosophy</span>
+        </div>
+        <a href="https://pressbooks.claremont.edu/historyofsexuality/" class="btn btn-primary">Read Online</a>
+    </div>
+</div>
+        
+        
+        
+        
+        
+        
+
+      </div>
+      
+      
+    </main>
+    
+    
+    
+    
+    
+    
+    
+
+    <footer>
+      <p>
+        Part of the <strong>Liberatory Futures Lab</strong> | An open archive
+        for collective transformation
+      </p>
+      <p>
+        <a href="#" style="color: var(--black)">Contribute a Narrative</a> |
+        <a href="#" style="color: var(--black)">View Full Bibliography</a>
+      </p>
+    </footer>
+
+    <script>
+      // Simple filter functionality
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelector(".filter-btn.active")
+            .classList.remove("active");
+          btn.classList.add("active");
+          // In a real implementation, this would filter the book cards
+        });
+      });
+    </script>
+  </body>
+</html>
